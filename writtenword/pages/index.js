@@ -3,6 +3,7 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
 import {GraphQLClient, gql} from 'graphql-request'
+import BlogCard from '../components/BlogCard'
 
 const graphcms = new GraphQLClient("https://api-us-west-2.hygraph.com/v2/cl6fw6sf22pjo01unhk0ydsv5/master")
 
@@ -19,12 +20,7 @@ const QUERY = gql `
           }
         }
         coverPhoto{
-          publishedAt{
-            createdBy{
-              id
-            }
-            url
-          }
+          url
         }
       }
     }
@@ -43,7 +39,7 @@ export async function getStaticProps(){
 
 
 
-export default function Home() {
+export default function Home({ posts }) {
     return (
         <div className={
             styles.container
