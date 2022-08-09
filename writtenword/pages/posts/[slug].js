@@ -70,7 +70,7 @@ export async function getStaticProps({ params }){
 export default function BlogPost({ post }){
     return(
         <main className={styles.blog}>
-            <img src={post.coverPhoto} alt="" 
+            <img src={post.coverPhoto.url} alt="This image of my blog post is not loading... I'm sorry " 
             className={styles.cover}
             />
 
@@ -81,7 +81,10 @@ export default function BlogPost({ post }){
                     <h6 className={styles.date} > {post.datePublished} </h6>
                 </div>
             </div>
-            <h2> {post.title} </h2>
+            <h2> {post.title} </h2> 
+            <div className={styles.content} dangerouslySetInnerHTML={{__html: post.content.html  }}  >
+
+            </div>
         </main>
     )
 }
